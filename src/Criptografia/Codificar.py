@@ -25,9 +25,14 @@ dicc_inverso = {valor: clave for clave, valor in dicc.items()}
 
 # Ingreso del mensaje y transformación
 def ingresarMsg():
-    print('Ingresar la frase a encriptar')
-    frase = input()
-    fraseEnNum = list(dicc[letra] for letra in frase.upper())
+    while True:
+        try:
+            print('Ingresar la frase a encriptar')
+            frase = input()
+            fraseEnNum = list(dicc[letra] for letra in frase.upper())
+            break
+        except:
+            print('Ingresa datos validos')
     return fraseEnNum
 
 # Convertir frase en una matriz
@@ -59,35 +64,42 @@ def codificar(mMensaje, mCodigo):
 # Generar la matriz para descifrar
 def invertirMatriz(mCodigo):
     mCodigoDescifrar = np.linalg.inv(mCodigo)
-    print('Matriz descifrado')
-    print(mCodigoDescifrar)
+    print('Matriz invertida')
     return mCodigoDescifrar
 
 # Insertar la matriz para descifrar
-def ingresarCodigoInverso():
-    print('Ingresa la matriz inversa separando los valores con espacios')
-    mCodigo = list(map(int, input().split(' ')))
-    n = math.ceil(math.sqrt(len(mCodigo)))
-    codigoInverso = np.array(mCodigo).reshape(n, n)
-    return codigoInverso
+def ingresarCodigo():
+    while True:
+        try:
+            print('Ingresa la matriz codigo separando los valores con espacios')
+            mCodigo = list(map(int, input().split(' ')))
+            n = math.ceil(math.sqrt(len(mCodigo)))
+            codigo = np.array(mCodigo).reshape(n, n)
+            break
+        except:
+            print('Ingresa datos validos')
+    return codigo
 
 # Descifrar el mensaje
 def descifrarMensaje(mCodificado, cInverso):
     mDescifrado = np.dot(mCodificado, cInverso)
     print('Matriz decodificada')
-    print(mDescifrado)
     return mDescifrado
 
 # Convertir los números descifrados a letras
 def convertirMensajeDescifrado(mDescifrado):
     fraseTransformada = [dicc_inverso[round(letra)] for fila in mDescifrado for letra in fila]
     cadena = ''.join(fraseTransformada)
-    print('Mensaje descodificado:')
-    print(cadena)
+    print('Mensaje descodificado')
     return cadena
 
 def ingresarMensajeEncriptado(n1, n2):
-    print('Ingresa el mensaje a decodificar')
-    m1 = list(map(int, input().split(' ')))
-    msgEncriptado = np.array(m1).reshape(n1, n2)
+    while True:
+        try:
+            print('Ingresa el mensaje a decodificar')
+            m1 = list(map(int, input().split(' ')))
+            msgEncriptado = np.array(m1).reshape(n1, n2)
+            break
+        except:
+            print('Ingresa datos validos')
     return msgEncriptado

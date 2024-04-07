@@ -33,7 +33,7 @@ while opcion != 0:
                 print(matrizCodigo)
                 break
             elif opcion2 == 2:
-                matrizCodigo = ingresarCodigoInverso()
+                matrizCodigo = ingresarCodigo()
                 print('La matriz codigo es:')
                 print(matrizCodigo)
                 break
@@ -52,7 +52,8 @@ while opcion != 0:
         n2 = int(input())
         msg = ingresarMensajeEncriptado(n1, n2)
         print(msg)
-        mCodigo = ingresarCodigoInverso()
+        print('Ingresa tu matriz codigo de medida', n2, 'x', n2)
+        mCodigo = ingresarCodigo()
         print(mCodigo)
         codigoInverso = invertirMatriz(mCodigo)
         msgDescifrado = descifrarMensaje(msg, codigoInverso)
